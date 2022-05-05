@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# ChargeOver.js React Sample
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project exists to provide a sample of how to use ChargeOver.js with react.
 
-## Available Scripts
+## Quick demo
 
-In the project directory, you can run:
+```shell
+$ git clone https://github.com/chargeover/chargeover-js-react-demo.git
+$ cd chargeover-js-react-demo
+# Open src/components/ChargeOverJS.js and change `instance` and `token`
+# to match your credentials before starting!
+$ npm start
+```
 
-### `npm start`
+## The important parts
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Adding the script to your project
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To add ChargeOver.js to your React project, you first need to load
+our JavaScript library. You can do this by adding the following code
+to `head` section of the `index.html` file in your React project
 
-### `npm test`
+```html
+    <script src="https://assets.chargeover.com/minify/?g=chargeover.js"></script>
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Using ChargeOver.js
 
-### `npm run build`
+To use ChargeOver.js you will first want to create a component, we've
+provided one for you in this project. The most important part being 
+instantiating the library. To do this we need to use the `componentDidMount`
+life-cycle hook.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+export default class ChargeOverJS extends React.Component {
+    componentDidMount() {
+        /**
+         * You can find this information at:
+         * https://YOUR_INSTANCE.chargeover.com/admin/r/devfeature/view/saas.cojs_enabled
+         */
+        window.ChargeOver.Core.setup({
+            'instance': 'example.chargeover.com',
+            'token': 'abcdefg1234567' // You can use ENV variables here as well
+        });
+    }
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+As you can see, in order to reference the library, you need `window.` to prefix references.
